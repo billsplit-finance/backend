@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const smartify = require("./sdebt_logic");
 const PORT = process.env.PORT || "5000";
-dotenv.config({path:'./.env'})
+dotenv.config({path:__dirname+'./.env'});
 require("./db/conn"); //link database
 app.use(express.json());
 app.use(require('./router/auth')); //link router files
