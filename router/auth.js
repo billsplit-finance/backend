@@ -13,7 +13,11 @@ const cors = require('cors');
 require("../db/conn");
 router.use(cookieParser());
 router.use(cors);
-
+const corsOptions = {
+    origin: true,
+    credentials: true
+  }
+router.options('*', cors(corsOptions));
 
 // functions------------------------------------------------------------
 
