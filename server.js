@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
 const smartify = require("./sdebt_logic");
-const PORT = process.env.PORT || "5000";
+const PORT = process.env.PORT || 5000;
 dotenv.config({path:'./.env'});
 require("./db/conn"); //link database
 app.use(express.json());
