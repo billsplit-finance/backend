@@ -18,7 +18,11 @@ const corsOptions = {
     credentials: true
   }
 router.options('*', cors(corsOptions));
-
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+    });
 // functions------------------------------------------------------------
 
 // get user data by email
