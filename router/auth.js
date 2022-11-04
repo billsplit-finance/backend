@@ -9,8 +9,10 @@ const UserGroup = require("../models/UserGroupSchema");
 const Transaction = require("../models/transactionSchema");
 const authenticate = require("../middleware/authenticate");
 const mainLogic = require("../sdebt_logic");
+const cors = require('cors');
 require("../db/conn");
 router.use(cookieParser());
+router.use(cors);
 
 
 // functions------------------------------------------------------------
@@ -261,6 +263,15 @@ router.post("/transaction/add",async(req,res)=>{
     }
 })
 
+// minimal transaction logic endpoint
+router.post("/simplify",(req,res)=>{
+    const {fromTo,showAmount,simplified,amount} = req.body;
+    const response = mainLogic(fromTo,showAmount,simplified,amount);
+    res.status(200).json({
+        showAmount:response[0],
+        simplified: response[1]
+    });
+})
 
 router.post("/register",async(req,res)=>{
     const {name,email,password,cpassword} = req.body;
