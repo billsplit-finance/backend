@@ -32,7 +32,7 @@ const authenticate =async(req,res,next)=>{
         next();
 
     }catch(e){
-        res.status(401).send({status:401,message:"unauthorised"});
+        res.status(401).json({status:401,message:"unauthorised"});
         console.log(e);
     }
 }

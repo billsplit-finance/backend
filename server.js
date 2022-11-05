@@ -9,7 +9,8 @@ require("./db/conn"); //link database
 app.use(express.json());
 app.use(cors({
     origin:'*',
-    credentials: true
+    credentials: true,
+    exposedHeaders: ["set-cookie"],
 }));
 app.use(require('./router/auth')); //link router files
 // const corsOptions = {
