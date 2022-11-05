@@ -4,10 +4,12 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const smartify = require("./sdebt_logic");
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 require("./db/conn"); //link database
 app.use(express.json());
 app.use(cors);
+app.options('*', cors());
+app.use(require('./router/auth')); //link router files
 // const corsOptions = {
     //     origin: true,
     //     credentials: true
@@ -18,7 +20,6 @@ app.use(cors);
         //     res.header("Access-Control-Allow-Headers", "X-Requested-With");
         //     next();
         //     });
-app.use(require('./router/auth')); //link router files
 
 
 app.get("/",(req,res)=>{

@@ -1,3 +1,6 @@
+require("../db/conn");
+router.use(cookieParser());
+
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -9,20 +12,6 @@ const UserGroup = require("../models/UserGroupSchema");
 const Transaction = require("../models/transactionSchema");
 const authenticate = require("../middleware/authenticate");
 const mainLogic = require("../sdebt_logic");
-// const cors = require('cors');
-require("../db/conn");
-router.use(cookieParser());
-// router.use(cors);
-// const corsOptions = {
-//     origin: true,
-//     credentials: true
-//   }
-// router.options('*', cors(corsOptions));
-// router.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     next();
-//     });
 // functions------------------------------------------------------------
 
 // get user data by email
