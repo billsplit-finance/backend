@@ -7,7 +7,10 @@ const smartify = require("./sdebt_logic");
 const PORT = process.env.PORT || 5000;
 require("./db/conn"); //link database
 app.use(express.json());
-app.use(cors);
+app.use(cors({
+    origin:'*',
+    credentials: true
+}));
 app.use(require('./router/auth')); //link router files
 // const corsOptions = {
     //     origin: true,
