@@ -9,20 +9,20 @@ const UserGroup = require("../models/UserGroupSchema");
 const Transaction = require("../models/transactionSchema");
 const authenticate = require("../middleware/authenticate");
 const mainLogic = require("../sdebt_logic");
-const cors = require('cors');
+// const cors = require('cors');
 require("../db/conn");
 router.use(cookieParser());
-router.use(cors);
-const corsOptions = {
-    origin: true,
-    credentials: true
-  }
-router.options('*', cors(corsOptions));
-router.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-    });
+// router.use(cors);
+// const corsOptions = {
+//     origin: true,
+//     credentials: true
+//   }
+// router.options('*', cors(corsOptions));
+// router.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+//     });
 // functions------------------------------------------------------------
 
 // get user data by email
@@ -273,6 +273,7 @@ router.post("/transaction/add",async(req,res)=>{
 
 // minimal transaction logic endpoint
 router.post("/simplify",(req,res)=>{
+    console.log("calls simplify")
     const {fromTo,showAmount,simplified,amount} = req.body;
     const response = mainLogic(fromTo,showAmount,simplified,amount);
     res.status(200).json({
@@ -284,7 +285,7 @@ router.post("/simplify",(req,res)=>{
 router.post("/register",async(req,res)=>{
     const {name,email,password,cpassword} = req.body;
     if(!name || !email || !password || !cpassword){
-        return res.status(422).send({status:422,message:"Enter the required fields"});
+        return res.status(422).json({status:422,message:"Enter the required fields"});
     }
     if(password != cpassword){
         return res.status(422).json({error:"Password and confirm password are not matching"});
@@ -292,7 +293,7 @@ router.post("/register",async(req,res)=>{
     User.findOne({email:email})
     .then((userExist)=>{
         if(userExist){
-            return res.status(423).send({status:423,message:"Email already exists"});
+            return res.status(423).json({status:423,message:"Email already exists"});
         }
         const user = new User({name,email,password,cpassword});
 
