@@ -19,7 +19,6 @@ app.use(cors);
         //     next();
         //     });
 app.use(require('./router/auth')); //link router files
-router.use(cookieParser());
 
 
 app.get("/",(req,res)=>{
