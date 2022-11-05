@@ -1,5 +1,5 @@
 const dotenv = require("dotenv");
-dotenv.config({path:'./.env'});
+dotenv.config();
 const express = require("express");
 const app = express();
 const cors = require('cors');
@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 require("./db/conn"); //link database
 app.use(express.json());
 app.use(cors({
-    origin:'*',
+    origin: process.env.ORIGIN,
     credentials: true,
     exposedHeaders: ["set-cookie"],
 }));
