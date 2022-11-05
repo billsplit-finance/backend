@@ -1,6 +1,4 @@
 require("../db/conn");
-router.use(cookieParser());
-
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -12,6 +10,7 @@ const UserGroup = require("../models/UserGroupSchema");
 const Transaction = require("../models/transactionSchema");
 const authenticate = require("../middleware/authenticate");
 const mainLogic = require("../sdebt_logic");
+router.use(cookieParser());
 // functions------------------------------------------------------------
 
 // get user data by email
