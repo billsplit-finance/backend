@@ -370,6 +370,7 @@ router.post("/login", async (req, res) => {
         expires: new Date(Date.now() + 25892000000), //30 days expiry
         httpOnly: true,
         secure: true,
+        sameSite: "none",
       });
       if (!isMatched) {
         res
