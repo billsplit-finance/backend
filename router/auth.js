@@ -115,7 +115,6 @@ router.get("/group", async (req, res) => {
 // get group data by userid
 router.post("/group/user", async (req, res) => {
   const fetched = req.body;
-  console.log(fetched._id);
   let list = [];
   await Group.find({ members: fetched._id })
     .then((data) => {
@@ -164,9 +163,7 @@ router.post("/group", async (req, res) => {
     gid: createGroup._id,
     transactions: [],
     showAmount: new Array(members.length + 1).fill(new Array(2).fill(0)),
-    simplified: new Array(members.length + 1).fill(
-      new Array(members.length + 1).fill(0)
-    ),
+    simplified: 0
   });
   await addTransactionSlot.save();
   createGroup
@@ -201,6 +198,13 @@ router.post("/group/add", async (req, res) => {
         { members: members }
       );
       if (addMembers) {
+        const getTransaction = await Transaction.findOne({gid:gid});
+        const sa = [...getTransaction.showAmount,[0,0]]
+        const simple = getTransaction.simplified !== 0 ? [...getTransaction.simplified,new Array(members.length).fill(0)] : 0;
+        const updateTransactionSlot = await Transaction.updateOne({gid:gid},{
+          showAmount: sa,
+          simplified: simple
+        });
         res.status(200).json({ message: "Members added succcesfully" });
       } else {
         res.status(500).json({ message: "Error occured" });
@@ -277,6 +281,7 @@ router.post("/transaction/add", async (req, res) => {
       getTransactionOuterData.simplified,
       amount
     );
+    console.log(newSimplified);
     const postData = await Transaction.updateOne(
       { gid: gid },
       {
@@ -299,7 +304,6 @@ router.post("/transaction/add", async (req, res) => {
 
 // minimal transaction logic endpoint
 router.post("/simplify", (req, res) => {
-  console.log("calls simplify");
   const { fromTo, showAmount, simplified, amount } = req.body;
   const response = mainLogic(fromTo, showAmount, simplified, amount);
   res.status(200).json({

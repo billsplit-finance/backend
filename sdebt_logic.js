@@ -1,6 +1,9 @@
-function providerArray(old){
+function providerArray(old,fromTo){
     // change simplified to normal simplified
-    let createSimplified = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+    if(old === 0){
+        return new Array(fromTo[1].length).fill(new Array(fromTo[1].length).fill(0));
+    }
+    let createSimplified = new Array(fromTo[1].length).fill(new Array(fromTo[1].length).fill(0));
     for(let i=0;i<old.length;i++){
         const giver = old[i][0];
         const getter = old[i][1];
@@ -70,7 +73,7 @@ const sdebt = (arr)=>{
         let minValue = mincompare(-arr[minIndex],arr[maxIndex]);
         arr[minIndex] += minValue;
         arr[maxIndex] -= minValue;
-        res.push([minIndex,maxIndex,minValue])
+        res.push([parseInt(minIndex),parseInt(maxIndex),minValue])
         return minConnection(arr,res);
     }
 
@@ -84,10 +87,10 @@ const sdebt = (arr)=>{
 // const res = sdebt(arr,member);
 
 const makeSimplified=(fromTo,showAmount,simplified,amount)=>{
-    let oldSimplified = providerArray(simplified);
-    let [newShowAmount,newSimplified] = iterate(fromTo,showAmount,new Array(showAmount.length).fill(new Array(showAmount.length).fill(0)),amount);
+    let oldSimplified = providerArray(simplified,fromTo);
+    let [newShowAmount,newSimplified] = iterate(fromTo,showAmount,oldSimplified,amount);
     let simplifiedVersion = sdebt(newSimplified);
-    return [newShowAmount,simplifiedVersion]; 
+    return [newShowAmount,simplifiedVersion.length>0?simplifiedVersion : 0]; 
 }
 
 module.exports = makeSimplified;
