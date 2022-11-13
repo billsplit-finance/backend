@@ -1,21 +1,78 @@
-# BillSplit - Backend
 
-BillSplit is an app for splitting expenses with your friends. It lets you and your friends add various bills and keep track of who owes who, and then it helps you to settle up with each other. Here's a quick overview of how it works.First, sign up for an account!. Next, create a group. Once you've created your group, you and your friends can all start adding expenses! Go to your group, then hit the 'Add bill' button. You'll be asked for various details about your expense, like the total cost, who paid, and how much each person should owe. As soon as you hit 'Save', BillSplit will update everyone's balances to keep track of how much each person owes. Later, after you've added a bunch of expenses, you'll probably want to settle up with your friends. Just hit the 'Settle up' button to pay back your friend. You can record a cash payment (e.g. you just handed your friend some cash.
+<a  href="https://billsplit-finance.netlify.app/" ><img src="https://github.com/billsplit-finance/frontend/blob/main/src/Img/while_black.png" width="200px"></a>
+
+# Table of Contents
+
+1. [Description](#description)
+2. [Demo](#demo)
+3. [Installation](#installation)
+4. [Technology Stack](#technology-stack)
+5. [Authors](#authors)
+
+<br/>
+
+# Description
+<br/>
+There are a lot of scenarios where you have shared expenses with your friends, colleagues, and roommates. But there is always a hassle to calculate what you paid, owed by whom and what amount needs to be pay to whom.
+<br/>
+Here comes BillSplit in the picture to solve all the problems related to sharing your expenses with your friends and family. Calculate and settle in one Go.
+<br/>
+
+# Demo
+
+[Live Demo](https://billsplit-finance.netlify.app/)
+
+<br/>
 
 
-## Demo ## 
-Get a user journey with RoughSlate feature there you can add expense , see the transactions and can delete/settleup the transactions.
+<br/>
+Test Credentials:
 
-## Technology Stack ##
-* Nodejs
-* ExpressJs
-* MongoDB
+  - Email: pestoproject@gmail.com
+  - Password:1111111
 
-## Authors ##
-* Aditya Chaudhari
-* Saloni Prajapati
-* Yogesh Rai
+<br/>
 
-## License ##
-MIT
+# Installation
 
+- Fork or directly clone this repository to your local machine
+- Use the `npm install` command to install dependencies
+- Once the dependencies are finished installing, use the `npm start` command inside the root directory to open the app in your local browser of choice
+
+<br/>
+
+# Technology Stack
+
+We attempted to employ an entirely contemporary tech stack while experimenting with some novel, unexplored technologies. As a result, a quick, effective, and easily extensible web application was created, which should make it very future-proof for the next few years. Here's what We used:
+
+## Server/Backend
+*Language:* JavaScript  
+*Platform:* [Node.js](https://nodejs.org/en/)  
+*Package management:* NPM  
+
+*Frameworks:*
+* [Expressjs](https://expressjs.com/)
+
+## Web/Frontend
+*Language:* JavaScript  
+*Package management:* NPM  
+
+*Frameworks:*
+* [React](https://reactjs.org/)
+* [Material UI](https://mui.com/)
+
+
+## Databases
+- [MongoDb](https://www.mongodb.com/)
+
+<br/>
+
+# Authors
+
+- [Aditya](https://github.com/aditya226369)
+
+<br/>
+
+# Licence
+
+Distributed under the MIT License.
