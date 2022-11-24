@@ -274,6 +274,7 @@ router.post("/transaction/label", async (req, res) => {
 router.post("/transaction/add", async (req, res) => {
   const { gid, fromTo, amount, description, label, date } = req.body;
   try {
+    console.log(req.body);
     const getTransactionOuterData = await Transaction.findOne({ gid: gid });
     const [newShowAmount, newSimplified] = mainLogic(
       fromTo,
@@ -281,7 +282,6 @@ router.post("/transaction/add", async (req, res) => {
       getTransactionOuterData.simplified,
       amount
     );
-    console.log(newSimplified);
     const postData = await Transaction.updateOne(
       { gid: gid },
       {
